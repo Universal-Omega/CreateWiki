@@ -5,18 +5,24 @@ declare( strict_types=1 );
 namespace NoOptionalParamPlugin;
 
 use Phan\CodeBase;
-use Phan\Language\Element\FunctionInterface;
+use Phan\Language\Element\Func;
+use Phan\Language\Element\Method;
 use Phan\PluginV3;
+use Phan\PluginV3\AnalyzeFunctionCapability;
+use Phan\PluginV3\AnalyzeMethodCapability;
 
-final class NoOptionalParamPlugin extends PluginV3 {
+final class NoOptionalParamPlugin extends PluginV3 implements
+	AnalyzeFunctionCapability,
+	AnalyzeMethodCapability
+{
 
 	public static function getAnalyzeFunctionCallClosures( CodeBase $code_base ): array {
 		return [];
 	}
 
-	public function analyzeFunctionDefinition(
+	public function analyzeFunction(
 		CodeBase $code_base,
-		FunctionInterface $function
+		Func $function
 	): void {
 		foreach ( $function->getParameterList() as $parameter ) {
 			if ( $parameter->isOptional() ) {
@@ -26,6 +32,23 @@ final class NoOptionalParamPlugin extends PluginV3 {
 					'PhanPluginOptionalParameterFound',
 					'Function {FUNCTION} has an optional parameter ${PARAMETER}',
 					[ $function->getName(), $parameter->getName() ]
+				);
+			}
+		}
+	}
+
+	public function analyzeMethod(
+		CodeBase $code_base,
+		Method $method
+	): void {
+		foreach ( $method->getParameterList() as $parameter ) {
+			if ( $parameter->isOptional() ) {
+				$this->emitPluginIssue(
+					$code_base,
+					$method->getContext(),
+					'PhanPluginOptionalParameterFound',
+					'Function {FUNCTION} has an optional parameter ${PARAMETER}',
+					[ $method->getName(), $parameter->getName() ]
 				);
 			}
 		}
