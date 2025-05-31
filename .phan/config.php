@@ -60,6 +60,9 @@ $cfg['plugins'] = array_merge( $cfg['plugins'], [
 	'UseReturnValuePlugin',
 ] );
 
+
+$cfg['plugins'][] = __DIR__ . '/Plugin/NoOptionalParamPlugin.php';
+
 $cfg['enable_class_alias_support'] = false;
 
 // $cfg['strict_method_checking'] = true;
