@@ -54,7 +54,7 @@ final class NoOptionalParamPlugin extends PluginV3 implements
 		}
 	}
 
-	public static function getIssueSuppressionList(): array {
+	public function getIssueSuppressionList(): array {
 		return [
 			'PhanOptionalFunctionParameterFound',
 			'PhanOptionalMethodParameterFound',
