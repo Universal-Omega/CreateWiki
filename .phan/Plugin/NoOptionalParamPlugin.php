@@ -6,7 +6,7 @@ namespace NoOptionalParamPlugin;
 
 use Phan\CodeBase;
 use Phan\Language\Element\FunctionInterface;
-use Phan\Plugin\PluginV3;
+use Phan\PluginV3;
 
 final class NoOptionalParamPlugin extends PluginV3 {
 
