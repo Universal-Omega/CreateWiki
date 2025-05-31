@@ -41,7 +41,6 @@ $cfg['plugins'] = array_merge( $cfg['plugins'], [
 	'LoopVariableReusePlugin',
 	// 'MoreSpecificElementTypePlugin',
 	'NotFullyQualifiedUsagePlugin',
-	'NoOptionalParamPlugin',
 	'PHPDocRedundantPlugin',
 	'PHPUnitAssertionPlugin',
 	'PHPUnitNotDeadCodePlugin',
