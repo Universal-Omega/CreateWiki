@@ -29,7 +29,7 @@ final class NoOptionalParamPlugin extends PluginV3 implements
 				$this->emitPluginIssue(
 					$code_base,
 					$function->getContext(),
-					'PhanPluginOptionalParameterFound',
+					'PhanOptionalFunctionParameterFound',
 					'Function {FUNCTION} has an optional parameter ${PARAMETER}',
 					[ $function->getName(), $parameter->getName() ]
 				);
@@ -46,8 +46,8 @@ final class NoOptionalParamPlugin extends PluginV3 implements
 				$this->emitPluginIssue(
 					$code_base,
 					$method->getContext(),
-					'PhanPluginOptionalParameterFound',
-					'Function {FUNCTION} has an optional parameter ${PARAMETER}',
+					'PhanOptionalMethodParameterFound',
+					'Method {METHOD} has an optional parameter ${PARAMETER}',
 					[ $method->getName(), $parameter->getName() ]
 				);
 			}
@@ -55,7 +55,10 @@ final class NoOptionalParamPlugin extends PluginV3 implements
 	}
 
 	public static function getIssueSuppressionList(): array {
-		return [ 'PhanPluginOptionalParameterFound' ];
+		return [
+			'PhanOptionalFunctionParameterFound',
+			'PhanOptionalMethodParameterFound',
+		];
 	}
 }
 
