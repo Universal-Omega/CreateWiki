@@ -9,7 +9,7 @@ use MWExceptionRenderer;
 
 abstract class ErrorBase extends ErrorPageError {
 
-	protected function __construct( string $msg, array $params ) {
+	protected function __construct( string $msg, array $params = [] ) {
 		$this->msg = $msg;
 		$this->params = $params;
 		$errorBody = new RawMessage( Html::errorBox( $this->getMessageObject()->parse() ) );
