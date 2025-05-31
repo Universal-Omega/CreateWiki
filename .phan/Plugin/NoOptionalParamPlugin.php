@@ -54,11 +54,6 @@ final class NoOptionalParamPlugin extends PluginV3 implements
 		}
 	}
 
-	public function shouldAnalyzeFunction( CodeBase $code_base, FunctionInterface $function ): bool {
-		// Always analyze
-		return true;
-	}
-
 	public static function getIssueSuppressionList(): array {
 		return [ 'PhanPluginOptionalParameterFound' ];
 	}
